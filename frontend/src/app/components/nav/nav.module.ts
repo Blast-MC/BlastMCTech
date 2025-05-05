@@ -1,4 +1,4 @@
-import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { CommonModule, NgOptimizedImage } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { NavComponent } from './nav.component';
@@ -10,7 +10,6 @@ import { NavComponent } from './nav.component';
     RouterLink,
     NgOptimizedImage,
   ],
-  exports: [NavComponent],
-  schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
+  exports: [NavComponent]
 })
 export class NavModule {}
