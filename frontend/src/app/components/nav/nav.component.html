@@ -1,11 +1,18 @@
-<nav class="d-flex justify-content-between">
-	<div class="w-100">
-		<div class="nav-list d-none d-md-flex flex-column flex-md-row">
-			<div class="text-center text-md-left mb-2 mb-md-0 mr-md-2">
-				<a>
-					<img class="logo" ngSrc="assets/logo.png" alt="Logo" height="1107" width="1220">
-				</a>
-			</div>
-		</div>
-	</div>
+<nav class="navbar">
+  <a routerLink="/home" class="logo text-reset text-decoration-none">
+    <div class="d-flex gap-2 align-items-center">
+      <img src="assets/logo.png" alt="Logo">
+      <h1>Blast's Utilities</h1>
+    </div>
+  </a>
+
+  <div class="menu">
+    <button class="hamburger" (click)="toggleMenu()">☰</button>
+
+    <ul *ngIf="menuOpen" class="dropdown" (clickOutside)="closeMenu()">
+      <li *ngFor="let item of menuItems" (click)="navigate(item.route)">
+        {{ item.label }}
+      </li>
+    </ul>
+  </div>
 </nav>

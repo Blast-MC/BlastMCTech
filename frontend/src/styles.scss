@@ -1,2 +1,24 @@
 /* You can add global styles to this file, and also import other style files */
 @import 'bootstrap/scss/bootstrap';
+
+:root {
+  --color-bg: #1e1e1e;
+  --color-surface: #2a2a2a;
+  --color-surface-dark: #3a3a3a;
+  --color-text: #f0f0f0;
+  --color-primary: #4fc3f7;
+  --color-secondary: #5c6bc0;
+  --color-border: #444;
+}
+
+.dropdown-menu {
+  opacity: 0;
+  transform: scaleY(0);
+  transform-origin: top;
+  transition: opacity 150ms ease, transform 150ms ease;
+}
+
+.dropdown-menu.show {
+  opacity: 1;
+  transform: scaleY(1);
+}

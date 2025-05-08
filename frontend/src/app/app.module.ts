@@ -1,12 +1,24 @@
 import { NgModule } from '@angular/core';
 import {AppComponent} from './app.component';
+import {BrowserModule} from '@angular/platform-browser';
 import {NavModule} from './components/nav/nav.module';
+import {CommonModule} from '@angular/common';
+import {RouterOutlet} from '@angular/router';
+import {AppRoutingModule} from './app-routing.module';
+import {ColorSketchModule } from 'ngx-color/sketch';
+import {NgClickOutsideDirective} from 'ng-click-outside2';
 
 @NgModule({
 	declarations: [AppComponent],
   imports: [
+    AppRoutingModule,
+    BrowserModule,
     NavModule,
+    CommonModule,
+    RouterOutlet,
+    ColorSketchModule,
+    NgClickOutsideDirective
   ],
-	exports: [AppComponent]
+	bootstrap: [AppComponent]
 })
 export class AppModule {}

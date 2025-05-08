@@ -1,0 +1,14 @@
+<div class="color-picker-wrapper" (clickOutside)="closePicker()">
+  <div
+    class="swatch"
+    [style.background]="color"
+    (click)="togglePicker()"
+  ></div>
+
+  <div class="picker-popup" *ngIf="showPicker">
+    <color-sketch
+      [color]="color"
+      (onChangeComplete)="onColorChange($event)"
+    ></color-sketch>
+  </div>
+</div>

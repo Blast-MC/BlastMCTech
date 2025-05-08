@@ -13,4 +13,8 @@ export class AppComponent {
         public router: Router,
     ) { }
 
+    isHomePage() {
+        return this.router.url.split(/[#?]/)[0] === '/'
+    }
+
 }

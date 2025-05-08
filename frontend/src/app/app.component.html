@@ -1,4 +1,9 @@
-<div>
+<div class="body">
   <app-nav></app-nav>
-  <p>nerd</p>
+  <div
+    class="page-wrapper justify-content-start"
+    [ngClass]="{'py-5': !isHomePage()}"
+  >
+    <router-outlet></router-outlet>
+  </div>
 </div>
