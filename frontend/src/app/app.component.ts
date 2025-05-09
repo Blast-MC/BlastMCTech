@@ -17,4 +17,8 @@ export class AppComponent {
         return this.router.url.split(/[#?]/)[0] === '/'
     }
 
+    isWrapperPage() {
+      return this.router.url.includes('/haste/')
+    }
+
 }

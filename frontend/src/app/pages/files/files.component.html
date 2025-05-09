@@ -1,0 +1,32 @@
+<div>
+  <div *ngIf="id">
+    <div *ngIf="fileExtension">
+      <!-- Images -->
+      <img *ngIf="['png', 'jpg', 'jpeg', 'gif', 'webp'].includes(fileExtension)" [src]="fileUrl" alt="Image" class="img-fluid files-preview" />
+
+      <!-- Video -->
+      <video *ngIf="['mp4', 'webm', 'ogg'].includes(fileExtension)" [src]="fileUrl" controls class="files-preview"></video>
+
+      <!-- Audio -->
+      <audio *ngIf="['mp3', 'wav', 'ogg'].includes(fileExtension)" [src]="fileUrl" controls></audio>
+
+      <!-- Download for other file types -->
+      <div *ngIf="['jar', 'zip', 'exe', 'pdf', 'txt'].includes(fileExtension)" style="width: 700px" >
+        <iframe
+          [src]="'/assets/pdfjs/web/viewer.html?file=' + encodeURIComponent(fileUrl) | safeUrl"
+          *ngIf="['pdf', 'txt'].includes(fileExtension)"
+          style="border: none; max-width: 95%; height: 70vh; width: 100%"
+        ></iframe>
+
+        <p>Download the file below:</p>
+        <a [href]="fileUrl" download class="btn btn-primary">Download</a>
+      </div>
+
+      <!-- Fallback -->
+      <div *ngIf="!['png','jpg','jpeg','gif','webp','mp4','webm','ogg','mp3','wav','jar','zip','exe','pdf','txt'].includes(fileExtension)">
+        <p>Unsupported file type.</p>
+        <a [href]="fileUrl" download class="btn btn-secondary">Try Downloading</a>
+      </div>
+    </div>
+  </div>
+</div>

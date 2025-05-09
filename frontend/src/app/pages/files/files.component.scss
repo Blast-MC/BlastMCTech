@@ -1,0 +1,17 @@
+:host {
+  display: block;
+  width: fit-content;
+  margin: auto;
+  padding: 1rem;
+  background-color: #2a2a2a;
+  color: white;
+  border-radius: 12px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.5);
+  text-align: center;
+}
+
+files-preview {
+  display: block;
+  height: auto;
+  max-width: 100%;
+}

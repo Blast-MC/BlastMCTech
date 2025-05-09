@@ -1,8 +1,8 @@
 <div class="body">
   <app-nav></app-nav>
   <div
-    class="page-wrapper justify-content-start"
-    [ngClass]="{'py-5': !isHomePage()}"
+    class="justify-content-start"
+    [ngClass]="{'py-5': !isHomePage(), 'page-wrapper': !isWrapperPage(), 'py-0': isWrapperPage()}"
   >
     <router-outlet></router-outlet>
   </div>

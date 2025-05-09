@@ -5,7 +5,7 @@ export const routes: Routes = [
 	{
 		path: '',
 		children: [
-      { path: 'haste', loadChildren: () => import('./pages/haste/haste.module').then(m => m.HasteModule) },
+      { path: 'files', loadChildren: () => import('./pages/files/files.module').then(m => m.FilesModule) },
 			{ path: 'qrcode', loadChildren: () => import('./pages/qrcode/qrcode.module').then(m => m.QRCodeModule) },
 			{ path: '', loadChildren: () => import('./pages/home/home.module').then(m => m.HomeModule) },
 			{ path: '**', redirectTo: '' },

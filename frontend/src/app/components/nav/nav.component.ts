@@ -13,7 +13,9 @@ export class NavComponent {
   clickOutsideEnabled: boolean = false;
 
   menuItems = [
+    {label: 'Haste', route: 'https://haste.blastmc.tech'},
     {label: 'QR Code Generator', route: '/qrcode'},
+    {label: 'File Hosting', route: '/files'}
   ];
 
   constructor(
@@ -42,9 +44,13 @@ export class NavComponent {
   }
 
   navigate(route: string) {
-    this.router.navigate([route]);
-    this.menuOpen = false;
-    this.clickOutsideEnabled = false;
+    if (route.startsWith('http'))
+      window.open(route, '_blank');
+    else {
+      this.router.navigate([route]);
+      this.menuOpen = false;
+      this.clickOutsideEnabled = false;
+    }
   }
 
 }
