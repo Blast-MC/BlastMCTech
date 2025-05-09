@@ -12,11 +12,13 @@
 
       <!-- Download for other file types -->
       <div *ngIf="['jar', 'zip', 'exe', 'pdf', 'txt'].includes(fileExtension)" style="width: 700px" >
-        <iframe
-          [src]="'/assets/pdfjs/web/viewer.html?file=' + encodeURIComponent(fileUrl) | safeUrl"
-          *ngIf="['pdf', 'txt'].includes(fileExtension)"
-          style="border: none; max-width: 95%; height: 70vh; width: 100%"
-        ></iframe>
+        <pdf-viewer
+          [src]="fileUrl"
+          *ngIf="['pdf'].includes(fileExtension)"
+          [render-text]="true"
+          [original-size]="false"
+          style="width: 400px; height: 500px"
+        ></pdf-viewer>
 
         <p>Download the file below:</p>
         <a [href]="fileUrl" download class="btn btn-primary">Download</a>
