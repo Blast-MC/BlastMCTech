@@ -4,6 +4,7 @@ import { FilesComponent } from './files.component';
 import { FilesRoutingModule } from './files-routing.module';
 import {SafeUrlPipe} from '../../pipes/safe-url.pipe';
 import {PdfViewerModule} from 'ng2-pdf-viewer';
+import {FormsModule} from '@angular/forms';
 
 @NgModule({
 	declarations: [FilesComponent],
@@ -11,7 +12,8 @@ import {PdfViewerModule} from 'ng2-pdf-viewer';
     CommonModule,
     FilesRoutingModule,
     SafeUrlPipe,
-    PdfViewerModule
+    PdfViewerModule,
+    FormsModule
   ]
 })
 export class FilesModule {

@@ -8,6 +8,7 @@ import {AppRoutingModule} from './app-routing.module';
 import {ColorSketchModule } from 'ngx-color/sketch';
 import {NgClickOutsideDirective} from 'ng-click-outside2';
 import {PdfViewerModule} from 'ng2-pdf-viewer';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
 	declarations: [AppComponent],
@@ -19,7 +20,8 @@ import {PdfViewerModule} from 'ng2-pdf-viewer';
     RouterOutlet,
     ColorSketchModule,
     NgClickOutsideDirective,
-    PdfViewerModule
+    PdfViewerModule,
+    HttpClientModule
   ],
 	bootstrap: [AppComponent]
 })
