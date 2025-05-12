@@ -15,3 +15,15 @@ files-preview {
   height: auto;
   max-width: 100%;
 }
+
+.upload-another-text {
+  color: gray;
+  text-decoration: none;
+}
+
+.upload-another-text:hover {
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+

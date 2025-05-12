@@ -5,6 +5,7 @@ import { FilesRoutingModule } from './files-routing.module';
 import {SafeUrlPipe} from '../../pipes/safe-url.pipe';
 import {PdfViewerModule} from 'ng2-pdf-viewer';
 import {FormsModule} from '@angular/forms';
+import {CopyInputModule} from '../../components/text-clipboard/copy-input.module';
 
 @NgModule({
 	declarations: [FilesComponent],
@@ -13,7 +14,8 @@ import {FormsModule} from '@angular/forms';
     FilesRoutingModule,
     SafeUrlPipe,
     PdfViewerModule,
-    FormsModule
+    FormsModule,
+    CopyInputModule
   ]
 })
 export class FilesModule {

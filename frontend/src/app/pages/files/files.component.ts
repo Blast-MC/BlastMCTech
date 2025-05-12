@@ -13,8 +13,8 @@ export class FilesComponent extends SiteComponent {
 
   direct: boolean = false;
   id: string;
-  fileUrl: string;
   fileExtension: string;
+  fileUrl: string;
 
   selectedFile: File | null = null;
   useOriginalName: boolean = false;
@@ -28,12 +28,11 @@ export class FilesComponent extends SiteComponent {
 
 	override ngOnInit() {
     this.route.paramMap.subscribe(params => {
+      if (!params.has('id')) return;
+      this.direct = true;
       this.id = params.get('id');
       this.fileExtension = params.get('extension') || 'png';
-      if (this.id) {
-        this.direct = true;
-        this.fileUrl = "https://i.blastmc.tech/" + this.id + "." + this.fileExtension;
-      }
+      this.fileUrl = "https://i.blastmc.tech/" + this.id + "." + this.fileExtension;
     });
 	}
 
@@ -46,7 +45,6 @@ export class FilesComponent extends SiteComponent {
       const width = canvas.width;
       const height = canvas.height;
 
-      // Apply directly to the container or host component
       const container = document.querySelector('pdf-viewer') as HTMLElement;
 
       if (container) {
@@ -82,4 +80,15 @@ export class FilesComponent extends SiteComponent {
         error: err => console.error('Upload error:', err)
       });
   }
+
+  clear() {
+    this.direct = false;
+    this.id = null;
+    this.fileExtension = null;
+    this.fileUrl = null;
+    this.selectedFile = null;
+    this.useOriginalName = false;
+  }
+
+
 }

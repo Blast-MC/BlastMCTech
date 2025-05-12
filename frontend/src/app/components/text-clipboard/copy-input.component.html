@@ -1,0 +1,10 @@
+<div class="copy-wrapper">
+  <span class="copy-label">{{ label }}</span>
+  <!-- Sizer span to calculate input width -->
+  <span #sizer class="copy-sizer">{{ value }}</span>
+  <input type="text" class="copy-input" [value]="value" readonly [style.width.px]="inputWidth"/>
+  <button type="button" class="btn btn-sm copy-btn gap-1" [ngClass]="copied ? 'btn-success' : 'btn-outline-secondary'" (click)="copyToClipboard()">
+    <i [ngClass]="copied ? 'bi bi-check' : 'bi bi-clipboard'" class="transition-icon"></i>
+    {{ copied ? 'Copied' : 'Copy' }}
+  </button>
+</div>
