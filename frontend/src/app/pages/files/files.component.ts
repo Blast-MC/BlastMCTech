@@ -1,7 +1,7 @@
 import {Component} from '@angular/core';
 import {SiteComponent} from '../../lifecycle/SiteComponent';
 import {ActivatedRoute} from '@angular/router';
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpEvent, HttpEventType} from '@angular/common/http';
 
 @Component({
 	selector: 'app-files',
@@ -18,6 +18,11 @@ export class FilesComponent extends SiteComponent {
 
   selectedFile: File | null = null;
   useOriginalName: boolean = false;
+
+  uploading: boolean = false;
+  uploadProgress: number = 0;
+
+  error: boolean = false;
 
 	constructor(
       public route: ActivatedRoute,
@@ -61,24 +66,38 @@ export class FilesComponent extends SiteComponent {
     }
   }
 
-  upload() {
+  upload(event: Event) {
+    event.preventDefault();
     if (!this.selectedFile) return;
 
     const formData = new FormData();
     formData.append('file', this.selectedFile);
-    formData.append('useOriginalName', String(this.useOriginalName));
+    formData.append('useOriginalName', 'false');
 
-    this.http.post('/api/upload', formData, { responseType: 'text' })
-      .subscribe({
-        next: url => {
-          this.id = url.split('/').pop()?.split('.')[0] || '';
-          this.fileExtension = this.selectedFile.name.split('.').pop() || 'png';
-          this.fileUrl = "https://i.blastmc.tech/" + this.id + "." + this.fileExtension;
-          this.selectedFile = null;
-          this.useOriginalName = false;
-        },
-        error: err => console.error('Upload error:', err)
-      });
+    this.uploading = true;
+    this.uploadProgress = 0;
+
+    this.http.post('/api/upload', formData, {
+      reportProgress: true,
+      observe: 'events'
+    }).subscribe({
+      next: (event: HttpEvent<any>) => {
+        if (event.type === HttpEventType.UploadProgress && event.total) {
+          this.uploadProgress = Math.round(100 * (event.loaded / event.total));
+        } else if (event.type === HttpEventType.Response) {
+          setTimeout(() => {this.uploading = false}, 500);
+        }
+      },
+      error: (err) => {
+        console.error('Upload failed', err);
+        this.error = true;
+        this.uploadProgress = 100;
+        setTimeout(() => {
+          this.error = false;
+          this.uploading = false;
+        }, 5000);
+      }
+    });
   }
 
   clear() {

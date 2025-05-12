@@ -1,7 +1,7 @@
 <div *ngIf="!direct">
   <div *ngIf="!id">
     <h1 class="mb-2">Upload File</h1>
-    <form (submit)="upload()" enctype="multipart/form-data">
+    <form (submit)="upload($event)" enctype="multipart/form-data">
       <div class="form-group mt-4">
         <input type="file" id="fileInput" (change)="onFileSelected($event)" class="form-control" />
       </div>
@@ -21,11 +21,28 @@
         </label>
       </div>
 
-      <button type="submit" class="btn btn-primary mt-3">Upload</button>
+      <button *ngIf="selectedFile" type="submit" class="btn btn-primary mt-3" [ngClass]="{'mb-2': uploading}">Upload</button>
+
+      <div *ngIf="uploading" class="mb-2 mt-2">
+        <div class="progress mt-2">
+          <div
+            class="progress-bar"
+            role="progressbar"
+            [class.bg-danger]="error"
+            [class.bg-success]="!error"
+            [style.width.%]="uploadProgress"
+            [attr.aria-valuenow]="uploadProgress"
+            aria-valuemin="0"
+            aria-valuemax="100"
+          >
+            {{ error ? 'There was an error while uploading' : uploadProgress + '%' }}
+          </div>
+        </div>
+      </div>
+
     </form>
   </div>
 
-  <!-- upload.component.html -->
   <div *ngIf="fileUrl" class="mb-2 d-flex justify-content-center">
     <app-copy-input label="File URL:" [value]="fileUrl"></app-copy-input>
   </div>
