@@ -23,6 +23,7 @@ export class FilesComponent extends SiteComponent {
   uploadProgress: number = 0;
 
   error: boolean = false;
+  success: boolean = false;
 
 	constructor(
       public route: ActivatedRoute,
@@ -85,6 +86,17 @@ export class FilesComponent extends SiteComponent {
         if (event.type === HttpEventType.UploadProgress && event.total) {
           this.uploadProgress = Math.round(100 * (event.loaded / event.total));
         } else if (event.type === HttpEventType.Response) {
+          if (event.status == 200) {
+            this.uploadProgress = 100;
+            this.success = true;
+            setTimeout(() => {
+              this.id = event.body.split('/').pop()?.split('.')[0] || '';
+              this.fileExtension = this.selectedFile.name.split('.').pop() || 'png';
+              this.fileUrl = "https://i.blastmc.tech/" + this.id + "." + this.fileExtension;
+              this.selectedFile = null;
+              this.useOriginalName = false;
+            }, 500);
+          }
           setTimeout(() => {this.uploading = false}, 500);
         }
       },
