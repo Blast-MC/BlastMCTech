@@ -97,7 +97,11 @@ export class FilesComponent extends SiteComponent {
               this.useOriginalName = false;
             }, 500);
           }
-          setTimeout(() => {this.uploading = false}, 500);
+          else {
+            setTimeout(() => {
+              this.uploading = false
+            }, 500);
+          }
         }
       },
       error: (err) => {
