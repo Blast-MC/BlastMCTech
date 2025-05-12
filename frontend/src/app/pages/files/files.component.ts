@@ -80,7 +80,8 @@ export class FilesComponent extends SiteComponent {
 
     this.http.post('/api/upload', formData, {
       reportProgress: true,
-      observe: 'events'
+      observe: 'events',
+      responseType: 'text'
     }).subscribe({
       next: (event: HttpEvent<any>) => {
         if (event.type === HttpEventType.UploadProgress && event.total) {
