@@ -21,7 +21,7 @@
         </label>
       </div>
 
-      <button *ngIf="selectedFile" type="submit" class="btn btn-primary mt-3" [ngClass]="{'mb-2': uploading}">Upload</button>
+      <button *ngIf="selectedFile && !uploading" type="submit" class="btn btn-primary mt-3" [ngClass]="{'mb-2': uploading}">Upload</button>
 
       <div *ngIf="uploading" class="mb-2 mt-2">
         <div class="progress mt-2">
