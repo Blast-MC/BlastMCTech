@@ -96,7 +96,7 @@ export class FilesComponent extends SiteComponent {
               this.fileUrl = "https://i.blastmc.tech/" + this.id + "." + this.fileExtension;
               this.selectedFile = null;
               this.useOriginalName = false;
-            }, 500);
+            }, 1000);
           }
           else {
             setTimeout(() => {
