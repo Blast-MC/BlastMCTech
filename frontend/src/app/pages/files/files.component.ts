@@ -123,6 +123,10 @@ export class FilesComponent extends SiteComponent {
     this.fileUrl = null;
     this.selectedFile = null;
     this.useOriginalName = false;
+    this.uploading = false;
+    this.uploadProgress = 0;
+    this.error = false;
+    this.success = false;
   }
 
 
