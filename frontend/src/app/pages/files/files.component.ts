@@ -73,7 +73,7 @@ export class FilesComponent extends SiteComponent {
 
     const formData = new FormData();
     formData.append('file', this.selectedFile);
-    formData.append('useOriginalName', 'false');
+    formData.append('useOriginalName', this.useOriginalName.toString());
 
     this.uploading = true;
     this.uploadProgress = 0;
